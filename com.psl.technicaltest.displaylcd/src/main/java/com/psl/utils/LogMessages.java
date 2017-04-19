@@ -29,5 +29,10 @@ public class LogMessages {
     public static final String MSG_INFO_DEFAULT_PATHS           = "No input routes are provided so they take the default values, inputpah: %s , outputtpah: %s ";
     /** MSG Invalid paths*/
     public static final String MSG_INFO_INVALID_PATHS           = "Invalid paths, inputpah: %s , outputtpah: %s ";
+    /** MSG The size sent is not valid*/
+    public static final String MSG_SIZE_NOT_VALID               = "The size  %s sent is not valid";
+
+    /** MSG non-numeric size */
+    public static final String MSG_ERROR_TYPE_SIZE              = "Non-numeric size  %s";
 
 }

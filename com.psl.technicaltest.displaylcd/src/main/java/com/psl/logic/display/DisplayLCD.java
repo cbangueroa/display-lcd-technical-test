@@ -1,6 +1,8 @@
 
 package com.psl.logic.display;
 
+import static org.junit.Assert.fail;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -92,37 +94,47 @@ public class DisplayLCD {
      * @param pNumber, Number to print
      * @return True in case of printing the number, false otherwise
      * */
-    public boolean printNumber(final String pSize, final String pNumber) {
+    private boolean printNumber(final String pSize, final String pNumber) {
         // We validate that the parameters are not vacuous or null        
         if (pSize != null && !pSize.isEmpty() && pNumber != null && !pNumber.isEmpty()) {
-            // We convert to integer received size
-            int size = Integer.parseInt(pSize);
-            // Initialize index of instructions
-            int indexInstrution = 0;
-            // While the index is less than five we continue iterating
-            while (indexInstrution < 5) {
-                StringBuilder line = new StringBuilder();
-                // We get each number to print
-                for (char character : pNumber.toCharArray()) {
-                    // We interpret how to print the number using the method  builLine
-                    builLine(line, InstructionsToDrawNumbers.getInstruction(character, indexInstrution), size);
-                }
-                // En cada iteración impar aplicamos n(size) veces la instruccion
-                if (indexInstrution % 2 != 0) {
-                    for (int sizeCount = 0; sizeCount < size; sizeCount++) {
-                        // We print the line
-                        getFileManager().writeLine(line.toString(), true);
-                        LOG.info(String.format(LogMessages.MSG_INFO_PRINT_LINE, line.toString()));
-                    }
-                } else {
-                    // We print the line
-                    getFileManager().writeLine(line.toString(), true);
-                    LOG.info(String.format(LogMessages.MSG_INFO_PRINT_LINE, line.toString()));
-                }
+            try {
+                // We convert to integer received size
+                int size = Integer.parseInt(pSize);
+                // We validate that the sent size is greater than zero
+                if (size > 0) {
+                    // Initialize index of instructions
+                    int indexInstrution = 0;
+                    // While the index is less than five we continue iterating
+                    while (indexInstrution < 5) {
+                        StringBuilder line = new StringBuilder();
+                        // We get each number to print
+                        for (char character : pNumber.toCharArray()) {
+                            // We interpret how to print the number using the method  builLine
+                            builLine(line, InstructionsToDrawNumbers.getInstruction(character, indexInstrution), size);
+                        }
+                        // En cada iteración impar aplicamos n(size) veces la instruccion
+                        if (indexInstrution % 2 != 0) {
+                            for (int sizeCount = 0; sizeCount < size; sizeCount++) {
+                                // We print the line
+                                getFileManager().writeLine(line.toString(), true);
+                                LOG.info(String.format(LogMessages.MSG_INFO_PRINT_LINE, line.toString()));
+                            }
+                        } else {
+                            // We print the line
+                            getFileManager().writeLine(line.toString(), true);
+                            LOG.info(String.format(LogMessages.MSG_INFO_PRINT_LINE, line.toString()));
+                        }
 
-                indexInstrution++;
+                        indexInstrution++;
+                    }
+                    return true;
+                } else {
+                    // The size sent is not valid
+                    LOG.info(String.format(LogMessages.MSG_SIZE_NOT_VALID, pSize));
+                }
+            } catch (Exception e) {
+                LOG.error(String.format(LogMessages.MSG_ERROR_TYPE_SIZE, pSize));
             }
-            return true;
         }
         return false;
     }

@@ -54,14 +54,14 @@
 		</resources>
 	</build>
 	<dependencies>
-		<!-- Dependencia utilizada para el registro de logs -->
+		<!-- Dependency used for logging-->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
 
-		<!-- Dependencia utilizada para realizar pruebas con mocks -->
+		<!-- Dependency used to test mocks -->
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
@@ -69,7 +69,7 @@
 		</dependency>
 		<!-- -->
 
-		<!-- Junit dependencias -->
+		<!-- Junit dependencies -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
