@@ -77,8 +77,7 @@ public class DisplayLCDUnitTest {
             fail("This exception should not be thrown: " + e.getMessage());;
         }
     }
-    
-    
+
     /**
      * ProcessingNumberNotValid</br>
      * Unit test that validates the scenario where a zero size is received as parameter and is not the final instruction.
@@ -95,8 +94,7 @@ public class DisplayLCDUnitTest {
             fail("This exception should not be thrown: " + e.getMessage());;
         }
     }
-    
-    
+
     /**
      * ProcessingNumberAndSizeValid</br>
      * Unit test that validates the scenario in which a valid record is processed
