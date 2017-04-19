@@ -1,8 +1,6 @@
 
 package com.psl.logic.display;
 
-import static org.junit.Assert.fail;
-
 import java.util.Collections;
 import java.util.List;
 
